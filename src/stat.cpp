@@ -787,8 +787,7 @@ void CStat::computeRtt (unsigned long long P_start_time, unsigned long long P_st
 {
     M_dumpRespTime[M_counterDumpRespTime].date = (double)P_stop_time / (double)1000;
     M_dumpRespTime[M_counterDumpRespTime].rtd_no = which;
-    M_dumpRespTime[M_counterDumpRespTime].rtt =
-        ((double)(P_stop_time - P_start_time)) / (double)1000;
+    M_dumpRespTime[M_counterDumpRespTime].rtt = P_stop_time - P_start_time;
     M_counterDumpRespTime++ ;
 
     if (M_counterDumpRespTime > (M_report_freq_dumpRtt - 1)) {
@@ -1700,7 +1699,7 @@ void CStat::dumpDataRtt ()
 
     if(M_headerAlreadyDisplayedRtt == false) {
         (*M_outputStreamRtt) << "Date_ms" << stat_delimiter
-                             << "response_time_ms" << stat_delimiter
+                             << "response_time_us" << stat_delimiter
                              << "rtd_no" << endl;
         M_headerAlreadyDisplayedRtt = true;
     }

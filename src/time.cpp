@@ -67,11 +67,7 @@ unsigned long long getmicroseconds()
     time.tv_sec = mts.tv_sec;
     time.tv_nsec = mts.tv_nsec;
 #else
-#if defined(CLOCK_MONOTONIC_COARSE)
-    clock_gettime(CLOCK_MONOTONIC_COARSE, &time);
-#else
     clock_gettime(CLOCK_MONOTONIC, &time);
-#endif
 #endif
     microseconds = (MICROSECONDS_PER_SECOND * time.tv_sec) + (time.tv_nsec / NANOSECONDS_PER_MICROSECOND);
     if (start_time == 0) {
